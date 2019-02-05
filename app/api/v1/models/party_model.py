@@ -1,5 +1,6 @@
 
 PARTY=[]
+OFFICE=[]
 
 class Party(object):
     def __init__(self):
@@ -16,4 +17,6 @@ class Party(object):
         }
         self.party.append(data)
         return self.party
+
+
     
