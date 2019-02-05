@@ -4,7 +4,7 @@ class OfficeModel(object):
     def __init__(self):
         self.office = OFFICES
     
-    def get_offices(self):
+    def get_office_list(self):
         return self.office
     
     def add_office(self, name, post):
