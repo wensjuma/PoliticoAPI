@@ -15,3 +15,6 @@ class OfficeModel(object):
         }
         self.office.append(data)
         return self.office
+        
+    def get_single_office(self, id):
+        return [office for office in self.office if office["id"] == id]

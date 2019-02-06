@@ -20,3 +20,18 @@ def save_office():
             "status":201,
             "data":"Office Added!!"
         }),201)
+
+@office_route.route("/singleoffice/<int:id>")
+def get_single_office(id):
+
+    office = OFFICE.get_single_office(id)
+
+    if office:
+        return make_response(jsonify({
+            "status": 200,
+            "data": office
+        }), 200)
+    return make_response(jsonify({
+        "status": 404,
+        "error": "No such office !!"
+    }), 404)

@@ -1,6 +1,6 @@
 
 PARTY=[]
-OFFICE=[]
+
 
 class Party(object):
     def __init__(self):
@@ -12,7 +12,7 @@ class Party(object):
     def add_party(self, name, slogan):
         data = {
             'id':len(self.party)+1,
-            'title':name,
+            'name':name,
             'slogan':slogan
         }
         self.party.append(data)
