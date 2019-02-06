@@ -24,6 +24,13 @@ class Party(object):
             return abort(400)
         party[0]['name'] = name,
         party[0]['slogan']= slogan  
+    def delete_party(self,party_id):
+    
+        party = [party for party in self.party if party['id'] == party_id]
+
+        if len(party) == 0:
+            abort(400)
+        self.party.remove(party[0])
 
        
 
