@@ -31,6 +31,9 @@ class Party(object):
         if len(party) == 0:
             abort(400)
         self.party.remove(party[0])
+    def specific_party(self, id):
+        return [party for party in self.party if party['id'] == id]
+
 
        
 

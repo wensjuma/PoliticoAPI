@@ -41,10 +41,23 @@ def update_party(party_id):
         "status":200,
         "data":[{"message":"Update success"}]
     })),200
+@party_route.route('/singleparty/<int:id>', methods=['GET'])
+def single_party(id):
+    party=PARTY.specific_party(id)
+    if party:
+        return make_response(jsonify({
+            "status":200,
+            "data": party
+        }), 200)
+    return make_response(jsonify({
+        "status": 404,
+        "message":"Data not found!!"
+    }), 404)
+
 @party_route.route('/deleteparty/<int:party_id>',methods=['DELETE'])
 def delete_party(party_id):
     PARTY.delete_party(party_id)
     return make_response(jsonify({
         "status":200,
-        "data":[{"message":"sucessful"}]
+        "data":[{"message":"Delete sucessful"}]
     }))
