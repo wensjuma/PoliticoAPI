@@ -21,7 +21,7 @@ def save_office():
             "data":"Office Added!!"
         }),201)
 
-@office_route.route("/singleoffice/<int:id>")
+@office_route.route("/singleoffice/<int:id>", methods=['GET'])
 def get_single_office(id):
 
     office = OFFICE.get_single_office(id)
