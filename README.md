@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/wensjuma/PoliticoAPI.svg?branch=develop)](https://travis-ci.org/wensjuma/PoliticoAPI)      [![Coverage Status](https://coveralls.io/repos/github/wensjuma/PoliticoAPI/badge.svg?branch=ch-testing-api-endpoints-163770409)](https://coveralls.io/github/wensjuma/PoliticoAPI?branch=ch-testing-api-endpoints-163770409)
 
 **Installing the application**
+
 Open a command terminal in your preferred folder
 Run command git clone Installing the application
 Open a command terminal in your preferred folder
@@ -19,15 +20,19 @@ Running tests
 pytest for running tests
 Python based framework flask
 Flask packages
+
 **Deployment**
+
 Heroku
 
 **Documentation**
 
 
 **Author**
+
 Wenslaus Juma
 
 **Credits**
+
 This application was build as part of the Andela nbo 37 challenge 2
      
