@@ -4,11 +4,6 @@
 
 **Endpoints**
 
-| Http Method | Endpoint | Functionality |
-| --- | --- |
-| POST | api/v1/addparty | Used by the admin to a political party |
-
-
 
 
 **Installing the application**
