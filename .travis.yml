@@ -6,6 +6,6 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - python -m pytest --cov=app
+  - python -m pytest --cov=app tests
 after_success:
   - coveralls
