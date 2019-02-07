@@ -2,6 +2,15 @@
 
 [![Build Status](https://travis-ci.org/wensjuma/PoliticoAPI.svg?branch=develop)](https://travis-ci.org/wensjuma/PoliticoAPI)      [![Coverage Status](https://coveralls.io/repos/github/wensjuma/PoliticoAPI/badge.svg?branch=ch-testing-api-endpoints-163770409)](https://coveralls.io/github/wensjuma/PoliticoAPI?branch=ch-testing-api-endpoints-163770409)
 
+**Endpoints**
+
+| Http Method | Endpoint | Functionality |
+| --- | --- |
+| POST | api/v1/addparty | Used by the admin to a political party |
+
+
+
+
 **Installing the application**
 
 Open a command terminal in your preferred folder
