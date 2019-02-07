@@ -17,11 +17,16 @@ def save_party():
         name= data['name']
         slogan= data['slogan']
         
-        PARTY.add_party(name, slogan)
-        return make_response(jsonify({
+        party = PARTY.add_party(name, slogan)
+        if party:
+            return make_response(jsonify({
             "status":201,
             "data":"Party Added successifuly!"
-        }),201)
+            }),201)
+        return make_response(jsonify({
+            "status": 400,
+            "message":"wrong details suplied!"
+        }))
 
 @party_route.route("/editparty/<int:party_id>", methods=['PUT'])
 def update_party(party_id):
