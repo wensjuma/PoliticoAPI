@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/wensjuma/PoliticoAPI.svg?branch=develop)](https://travis-ci.org/wensjuma/PoliticoAPI)      [![Coverage Status](https://coveralls.io/repos/github/wensjuma/PoliticoAPI/badge.svg?branch=develop)](https://coveralls.io/github/wensjuma/PoliticoAPI?branch=develop) <a href="https://codeclimate.com/github/wensjuma/PoliticoAPI/maintainability"><img src="https://api.codeclimate.com/v1/badges/bdcf0a8a5acfa785d239/maintainability" /></a>
 
+**Politico API Description**
+
+An API project to assist the citizen to cast their votes, do the automatic talling and rank the candidates 
+
 **Endpoints**
 
 | Method  | Endpoint   | Description  |   
@@ -24,7 +28,7 @@ Run command git clone https://github.com/wensjuma/PoliticoAPI.git to have a copy
 cd PoliticoAPI
 Create a virtual environment for the application virtualenv env
 Install dependencies from the requirements.txt file pip install -r requirements.txt
-Export environment variables to your environment export FLASK_APP="run.py"
+Export environment variables to your environment `export FLASK_APP="run.py"`
 Run the application using flask command flask run or using python python run.py
 Running tests
 
