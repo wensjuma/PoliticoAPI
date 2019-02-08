@@ -10,23 +10,23 @@ An API project to assist the citizen to cast their votes, do the automatic talli
 
 **Set up virtualenv**
 
-     `virtualenv env`
+     virtualenv env
      
 **Activate virtualenv**
 
-     `source env/bin/activate`
+     source env/bin/activate
      
 **Install dependencies**
 
-     `pip install -r requirements.txt`
+     pip install -r requirements.txt
      
 **Setup env variables**
 
-`$ export FLASK_APP=run.py
+$ export FLASK_APP=run.py
 
 $ export FLASK_DEBUG=1
 
-$ export FLASK_ENV=development`
+$ export FLASK_ENV=development
 
 **Running tests**
 
