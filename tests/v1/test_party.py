@@ -13,6 +13,14 @@ class TestParties(InputTests):
             }), content_type="application/json")
          result = json.loads(response.data.decode('utf-8'))
          self.assertEqual(result['status'], 201)
+    def test_post_code(self):
+         response = self.client.post("api/v1/party", data=json.dumps({
+                "name": "elihu",
+                "hqAddress": "str",
+                "logoUrl":"url"
+            }), content_type="application/json")
+         
+         self.assertEqual(response.status_code, 201)
     
     def test_get_party(self):
         res=self.client.get("api/v1/party")
@@ -34,13 +42,21 @@ class TestParties(InputTests):
         # self.assertEqual(helper_functions.convert_response_to_json(
         #     res)['data'], ['name'])
     
-    def test_edit_party(self):
+    def test_edit_wrong_party(self):
         '''test PUT /party/1 -if it doesn't exist'''
         response = self.client.put(
-           '{}/party/1000'.format(self.BASE_URL),
+           '{}/party/nonexist'.format(self.BASE_URL),
            content_type ='application/json'
             )
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
+    def test_edit_party(self):
+        res=self.client.put(
+            '{}/party/1'.format(self.BASE_URL),
+            content_type='application/json'
+        )
+        self.assertEqual(res.status_code, 400)
+
+      
     def test_success_edit_party(self):
         '''test PUT /party/1 -for an existing party'''
         response = self.client.put(
@@ -64,7 +80,7 @@ class TestParties(InputTests):
         
         """ test for a successiful DELETE  """
         response = self.client.delete(
-           '{}/party/1'.format(self.BASE_URL),
+           '{}/party/0'.format(self.BASE_URL),
            content_type ='application/json'
             )
 
@@ -74,7 +90,8 @@ class TestParties(InputTests):
         res = self.client.delete(
             '{}/parties/1000'.format(self.BASE_URL), content_type="application/json")
         self.assertEqual(res.status_code, 404)
-        self.assertEqual(len(self.PARTY), 3)
+       
+    
     
 
 
