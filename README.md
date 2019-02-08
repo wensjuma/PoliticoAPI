@@ -1,6 +1,6 @@
 # PoliticoAPI
 
-[![Build Status](https://travis-ci.org/wensjuma/PoliticoAPI.svg?branch=develop)](https://travis-ci.org/wensjuma/PoliticoAPI)      [![Coverage Status](https://coveralls.io/repos/github/wensjuma/PoliticoAPI/badge.svg?branch=develop)](https://coveralls.io/github/wensjuma/PoliticoAPI?branch=develop) <a href="https://codeclimate.com/github/wensjuma/PoliticoAPI/maintainability"><img src="https://api.codeclimate.com/v1/badges/bdcf0a8a5acfa785d239/maintainability" /></a>
+[![Build Status](https://travis-ci.org/wensjuma/PoliticoAPI.svg?branch=develop)](https://travis-ci.org/wensjuma/PoliticoAPI)       [![Coverage Status](https://coveralls.io/repos/github/wensjuma/PoliticoAPI/badge.svg)](https://coveralls.io/github/wensjuma/PoliticoAPI)  [![Maintainability](https://api.codeclimate.com/v1/badges/bdcf0a8a5acfa785d239/maintainability)](https://codeclimate.com/github/wensjuma/PoliticoAPI/maintainability)
 
 **Politico API Description**
 
