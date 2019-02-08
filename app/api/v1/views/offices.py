@@ -5,7 +5,7 @@ OFFICE = data_model.OfficeModel()
 office_route = Blueprint('office', __name__, url_prefix='/api/v1')
 @office_route.route('/')
 def index():
-    return "<br><br><br><hr><center><h2>Welcome to Politico API</h2> <h3>Use routes <i>api/v1/office</i>  and  <i>api/v1/party</i> to retrieve data</h3></center><hr>"
+    return "<br><br><br> <hr><center><h2>Welcome to Politico API</h2> <h3>Use routes <i>api/v1/office</i>  and  <i>api/v1/party</i> to retrieve data</h3></center><hr>"
 @office_route.route('/office',methods=['GET'])
 def get_offices():
     data = OFFICE.get_office_list()
