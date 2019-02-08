@@ -1,20 +1,5 @@
 from flask import Flask, abort
-PARTY=[
-    {
-        'id':1,
-        'name':'nairobi',
-        'hqAddress':'County',
-        'logoUrl':'https://www.logo'
-    },
-
-    {
-        'id':2,
-        'name':'naks vegas',
-        'hqAddress':'County',
-        'logoUrl':'https://www.political'
-    }
-]
-
+PARTY=[]
 
 class Party(object):
     def __init__(self):
