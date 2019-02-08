@@ -4,7 +4,15 @@
 
 **Endpoints**
 
-
+| Method  | Endpoint   | Description  |   
+|---|---|---|
+|GET | /api/v1/offices  |  View All offices created by the Admin |  
+| POST  |  /api/v1/offices | Admin add a new office  |   
+| GET  |  /api/v1/offices/id | Retrieve a specific office | 
+| GET  | /api/v1/party/id  | Retrieve a specific party  |   
+| POST  | /api/v1/party  | View all parties created by |  
+|  PUT |  /api/v1/party/id |Update a specific party   |  
+| DELETE  | /api/v1/party/id  | Delete specific party  |   
 
 
 **Installing the application**
