@@ -1,7 +1,7 @@
 from flask import Flask, abort
 
 OFFICES=[]
-
+    
 class OfficeModel(object):
     def __init__(self):
         self.office = OFFICES

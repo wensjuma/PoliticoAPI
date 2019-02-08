@@ -1,8 +1,12 @@
 from flask import Flask, Blueprint, make_response, request,jsonify 
 from app.api.v1.models import data_model
+import json
 OFFICE = data_model.OfficeModel()
 
 office_route = Blueprint('office', __name__, url_prefix='/api/v1')
+@office_route.route('/')
+def index():
+    return "<br><br><br> <hr><center><h2>Welcome to Politico API</h2> <h3>Use routes <i>api/v1/office</i>  and  <i>api/v1/party</i> to retrieve data</h3></center><hr>"
 @office_route.route('/office',methods=['GET'])
 def get_offices():
     data = OFFICE.get_office_list()
@@ -15,11 +19,16 @@ def save_office():
         data= request.get_json()
         name= data['name']
         type= data['type']      
-        OFFICE.add_office(name, type)
-        return make_response(jsonify({
+        office=OFFICE.add_office(name, type)
+        if office:
+             return make_response(jsonify({
             "status":201,
             "data":"Office Added!!"
         }),201)
+        return make_response(jsonify({
+        'status':'400',
+        'message':'Rquest not allowed!!'
+    }))
 
 @office_route.route("/office/<int:id>", methods=['GET'])
 def get_single_office(id):

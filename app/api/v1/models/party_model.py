@@ -1,7 +1,6 @@
 from flask import Flask, abort
 PARTY=[]
 
-
 class Party(object):
     def __init__(self):
         self.party = PARTY
