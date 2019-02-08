@@ -8,7 +8,7 @@ class OfficeTests(InputTests):
         res= self.client.get(
             '{}/office'.format(self.BASE_URL),
             content_type='application/json')
-        print res
+       
         self.assertEqual(res.status_code, 200)
         
     def test_return_empty(self):

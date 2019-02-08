@@ -1,6 +1,18 @@
 from flask import Flask, abort
 
-OFFICES=[]
+OFFICES=[
+    {
+        'id':1,
+        'name':'gubernatorial',
+        'type':'County'
+    },
+
+    {
+        'id':2,
+        'name':'member of parliament',
+        'type':'Constituency'
+    }
+]
 
 class OfficeModel(object):
     def __init__(self):
