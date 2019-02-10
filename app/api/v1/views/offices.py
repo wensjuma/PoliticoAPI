@@ -4,6 +4,12 @@ import json
 OFFICE = data_model.OfficeModel()
 
 office_route = Blueprint('office', __name__, url_prefix='/api/v1')
+def res_method(status, key, message):
+    dict={
+        'status':'status'
+    }
+    dict[key]=message
+    return make_response(jsonify(dict), status)
 @office_route.route('/')
 def index():
     return "<br><br><br> <hr><center><h2>Welcome to Politico API</h2> <h3>Use routes <i>api/v1/office</i>  and  <i>api/v1/party</i> to retrieve data</h3></center><hr>"
@@ -16,18 +22,22 @@ def get_offices():
     })),200
 @office_route.route('/office', methods=['POST'])
 def save_office():
+    try:
         data= request.get_json()
         name= data['name']
         type= data['type']      
         office=OFFICE.add_office(name, type)
-        if office:
+    except:
+        return res_method(400, "error", "check your format!!")
+    
+    if office:
              return make_response(jsonify({
             "status":201,
             "data":"Office Added!!"
         }),201)
-        return make_response(jsonify({
+    return make_response(jsonify({
         'status':'400',
-        'message':'Rquest not allowed!!'
+        'message':'Request not allowed!!'
     }))
 
 @office_route.route("/office/<int:id>", methods=['GET'])
