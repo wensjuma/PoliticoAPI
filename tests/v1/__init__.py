@@ -17,9 +17,24 @@ class InputTests(unittest.TestCase):
         self.app.testing = True
         self.BASE_URL= 'api/v1'
         self.PARTY={
+            'name':'party',
+            'hqAddress':'nairobi',
+            'logoUrl':'www.url'
+        }
+        self.DEL_PARTY={
             'name':'urp',
             'hqAddress':'nairobi',
             'logoUrl':'www.url'
+        }
+        self.DEL_OFFICE={
+            'name':'urp',
+            'type':'office'
+        }
+        self.BLANK_PARTY={
+            'name':'',
+            'hqAddress':'',
+            'logoUrl':''
+
         }
         
         self.OFFICE={

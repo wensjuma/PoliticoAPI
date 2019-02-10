@@ -64,7 +64,13 @@ def single_party(id):
 
 @party_route.route('/party/<int:party_id>',methods=['DELETE'])
 def delete_party(party_id):
-    party=PARTY.delete_party(party_id)
+    try:
+        party=PARTY.delete_party(party_id)
+    except:
+        return make_response({
+            'status':400,
+            'message':"Not delete function"
+        })
     if party:
         return make_response(jsonify({
             "status":200,
