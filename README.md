@@ -8,11 +8,11 @@ An API project to assist the citizen to cast their votes, do the automatic talli
 
 **App Setup and execution**
 
-**Set up virtualenv**
+**Set up virtual environment**
 
      virtualenv env
      
-**Activate virtualenv**
+**Activate virtual environment**
 
      source env/bin/activate
      
