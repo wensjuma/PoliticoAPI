@@ -1,12 +1,12 @@
 # PoliticoAPI
 
-[![Build Status](https://travis-ci.org/wensjuma/PoliticoAPI.svg?branch=develop)](https://travis-ci.org/wensjuma/PoliticoAPI)       [![Coverage Status](https://coveralls.io/repos/github/wensjuma/PoliticoAPI/badge.svg)](https://coveralls.io/github/wensjuma/PoliticoAPI)  [![Maintainability](https://api.codeclimate.com/v1/badges/bdcf0a8a5acfa785d239/maintainability)](https://codeclimate.com/github/wensjuma/PoliticoAPI/maintainability)
+[![Build Status](https://travis-ci.org/wensjuma/PoliticoAPI.svg?branch=develop)](https://travis-ci.org/wensjuma/PoliticoAPI)        [![Maintainability](https://api.codeclimate.com/v1/badges/bdcf0a8a5acfa785d239/maintainability)](https://codeclimate.com/github/wensjuma/PoliticoAPI/maintainability) [![Coverage Status](https://coveralls.io/repos/github/wensjuma/PoliticoAPI/badge.svg)](https://coveralls.io/github/wensjuma/PoliticoAPI)
 
 **Politico API Description**
 
 An API project to assist the citizen to cast their votes, do the automatic talling and rank the candidates 
 
-**App Setup**
+**App Setup and execution**
 
 **Set up virtualenv**
 
