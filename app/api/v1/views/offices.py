@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, make_response, request,jsonify 
 from app.api.v1.models import data_model
 import json
-OFFICE = data_model.OfficeModel()
+OFFICE = data_model.DataModel()
 
 office_route = Blueprint('office', __name__, url_prefix='/api/v1')
 def res_method(status, key, message):
