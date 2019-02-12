@@ -1,12 +1,13 @@
 from flask import Flask, Blueprint, make_response, request,jsonify 
 from app.api.v1.models import data_model
 import json
-from app.api.utils import res_method,retrieve_all_data, retrieve_specific_data,valid_string
+from app.api.utils import res_method,retrieve_all_data, retrieve_specific_data
 OFFICE = data_model.DataModel()
 
 office_route = Blueprint('office', __name__, url_prefix='/api/v1')
 
 @office_route.route('/')
+
 def index():
     return make_response(jsonify({
         "Message": "Welcome to our API "
