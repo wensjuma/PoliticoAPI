@@ -1,21 +1,19 @@
 from flask import Flask, Blueprint, make_response, request,jsonify 
 from app.api.v1.models import data_model
 import json
+from app.api.utils import res_method,retrieve_all_data, retrieve_specific_data,valid_string
 OFFICE = data_model.DataModel()
 
 office_route = Blueprint('office', __name__, url_prefix='/api/v1')
-def res_method(status, key, message):
-    dict={
-        'status':'status'
-    }
-    dict[key]=message
-    return make_response(jsonify(dict), status)
+
 @office_route.route('/')
 def index():
-    return "<br><br><br> <hr><center><h2>Welcome to Politico API</h2> <h3>Use routes <i>api/v1/office</i>  and  <i>api/v1/party</i> to retrieve data</h3></center><hr>"
+    return make_response(jsonify({
+        "Message": "Welcome to our API "
+    }))
 @office_route.route('/office',methods=['GET'])
 def get_offices():
-    data = OFFICE.get_office_list()
+    data = OFFICE.retrieve_all_offices()
     return make_response(jsonify({
         'status':200,
         'data':data
@@ -28,7 +26,10 @@ def save_office():
         type= data['type']      
         office=OFFICE.add_office(name, type)
     except:
-        return res_method(400, "error", "check your format!!")
+        return make_response(jsonify({
+            "status":400,
+            "message":"Invalid input !!"
+        })),400
     
     if office:
              return make_response(jsonify({
@@ -42,18 +43,11 @@ def save_office():
 
 @office_route.route("/office/<int:id>", methods=['GET'])
 def get_single_office(id):
+    office= retrieve_specific_data(OFFICE, "office", id)
+    if office:  
+        return res_method(200, "data", office)
+    return res_method( 404, "error", "office of that Id could not be Found!!" )
 
-    office = OFFICE.get_single_office(id)
-
-    if office:
-        return make_response(jsonify({
-            "status": 200,
-            "data": office
-        }), 200)
-    return make_response(jsonify({
-        "status": 404,
-        "error": "No such office !!"
-    }), 404)
 @office_route.route("/office/<int:office_id>", methods=['PUT'])
 def update_office(office_id):
     try:

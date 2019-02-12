@@ -2,7 +2,7 @@ import unittest
 import json
 from . import InputTests
 from . import helper_functions
-from app.api.v1.models.data_model import PARTY
+from app.api.v1.models.data_model import data_dict
 
 
 

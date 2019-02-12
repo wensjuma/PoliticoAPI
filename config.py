@@ -11,7 +11,7 @@ class Config:
     DEBUG = False
 
 
-class DevelopmentConfig(Config):
+class Development(Config):
     """
     Our development configuration class
     Set Debug to True
@@ -19,7 +19,19 @@ class DevelopmentConfig(Config):
     DEBUG = True
 
 
-class TestingConfig(Config):
+class Testing(Config):
+    """
+    Our testing configuration class
+    Set Debug to True
+    """
+    DEBUG = True
+class Production(Config):
+    """
+    Our testing configuration class
+    Set Debug to True
+    """
+    DEBUG = True
+class Staging(Config):
     """
     Our testing configuration class
     Set Debug to True
@@ -32,6 +44,8 @@ Declaring our application configuration
 for development and testing
 """
 app_config = {
-    "development": DevelopmentConfig,
-    "testing": TestingConfig
+    "development": Development,
+    "testing": Testing,
+    "staging":Staging,
+    "production": Production
 }

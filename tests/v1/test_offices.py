@@ -2,7 +2,7 @@ import unittest
 import json
 from . import InputTests
 from . import helper_functions
-from app.api.v1.models.data_model import OFFICES
+from app.api.v1.models.data_model import data_dict
 
 class OfficeTests(InputTests):
     def test_add_office(self):
@@ -11,7 +11,7 @@ class OfficeTests(InputTests):
             content_type="application/json")
         # result = json.loads(res.data.decode('utf-8'))
         self.assertEqual(res.status_code, 201)
-        self.assertEqual(len(OFFICES), 1)
+        self.assertEqual(len(data_dict), 2)
     def test_get_office(self):
         res= self.client.get(
             '{}/office'.format(self.BASE_URL),
