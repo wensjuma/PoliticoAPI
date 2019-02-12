@@ -1,52 +1,41 @@
 from flask import Flask, Blueprint, make_response, request,jsonify 
 from app.api.v1.models import data_model
 # from app.api.v1.models.data_model  import DataModel, PARTIES
-# from app.api.utils import valid_string, res_method, retrieve_specific_data, retrieve_all_data,return_response
-# from app.api.utils import res_method,sanitize_input, validate_string_data_type, validate_office_type, return_error,check_is_valid_url
-# from app.api.utils import  validate_int_data_type
-from app.api.utils import res_method, retrieve_all_data, retrieve_specific_data, res_method, format_response
+from app.api.utils import res_method, retrieve_specific_data, retrieve_all_data, return_response
+from app.api.utils import res_method,sanitize_input, validate_string_data_type, return_error
+
 
 PARTY = data_model.DataModel()
 
 party_route = Blueprint('party', __name__, url_prefix='/api/v1')
 @party_route.route('/party',methods=['GET'])
 def get_parties():
-       return res_method(200, "data", retrieve_all_data(PARTY, "party"))
+  
+      data = PARTY.retrieve_all_offices()       
+      return make_response(jsonify({
+        'status':200,
+        'data':data
+    })),200
+
+    
 @party_route.route('/party', methods=['POST'])
 def save_party():
     try:
-        
         data = request.get_json(force=True)
-    except:
-        return make_response(jsonify({
-            "status":400,
-            "message":"wrong input"
-        })),400  
-    name = data["name"]
-    hqAddress = data["hqAddress"]
-    logoUrl = data["logoUrl"]
+        name = data["name"]
+        hqAddress = data["hqAddress"]
+        logoUrl = data["logoUrl"]
+        
+    except KeyError as e:
+        return return_response(400, "an error occurred while creating party {} is missing".format(e.args[0]))
+    
 
-    party = PARTY.add_party(name, hqAddress,logoUrl)
+    party = data_model.DataModel()
+    party = party.add_party(name=name, hqAddress=hqAddress, logoUrl=logoUrl)
     if party:
-        return format_response(201, "party was created",party)
-    return format_response(400,"an error occured")
-
-        # data = request.get_json(force=True)
-        # name = data["name"]
-        # hqAddress = data["hqAddress"]
-        # logoUrl = data["logoUrl"]
-        # if(validate_string_data_type(name) == False):
-        #     return return_error(400, "the name should be of correct data type")
-        # if(validate_string_data_type(hqAddress) == False):
-        #     return return_error(400, "the HQ be of correct data type")
-        # if(check_is_valid_url(logoUrl) == False):
-        #     return return_error(400, "the Logo url is not in the correct format")
-
-        # if(sanitize_input(name)) == False:
-        #     return return_error(400, "name is in the wrong format")
-        # if (sanitize_input(hqAddress)) == False:
-        #     return return_error(400, "hq address is in the wrong format")
-                      
+        return return_response(201, "party {} was created".format(name), [party])
+    
+    return return_error(400, "an error occurred")                  
       
 @party_route.route("/party/<int:party_id>", methods=['PUT'])
 def update_party(party_id):
