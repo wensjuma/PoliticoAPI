@@ -2,7 +2,7 @@ import unittest
 import json
 from . import InputTests
 from . import helper_functions
-from app.api.v1.models.party_model import PARTY
+from app.api.v1.models.data_model import data_dict
 
 
 
@@ -70,11 +70,7 @@ class TestParties(InputTests):
         self.assertEqual(respo.status_code, 201)
    
     
-    def test_deleting_non_existent_party(self):
-        res = self.client.delete(
-            '{}/parties/1000'.format(self.BASE_URL), content_type="application/json")
-        self.assertEqual(res.status_code, 404)
-    
+   
 
             
         
