@@ -14,7 +14,9 @@ cryptography==2.5
 docopt==0.6.2
 enum34==1.1.6
 Flask==1.0.2
+Flask-JWT==0.3.2
 funcsigs==1.0.2
+futures==3.2.0
 gunicorn==19.9.0
 idna==2.8
 ipaddress==1.0.22
@@ -28,12 +30,16 @@ more-itertools==5.0.0
 pathlib2==2.3.3
 pep8==1.7.1
 pluggy==0.8.1
+psycopg2==2.7.7
+psycopg2-binary==2.7.7
 py==1.7.0
 pycparser==2.19
+PyJWT==1.4.2
 pylint==1.9.4
 pyOpenSSL==19.0.0
 pytest==4.2.0
 pytest-cov==2.6.1
+python-dotenv==0.10.1
 requests==2.21.0
 scandir==1.9.0
 singledispatch==3.4.0.3
