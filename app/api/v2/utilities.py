@@ -61,29 +61,9 @@ def check_matching_items_in_db_table(params, table_name):
 
 def token_required(f):
     """
-        This higher order function checks for token in the request
-        Headers
+        Checks for token in the request header
     """
-    # @wraps(f)
-    # def decorated(*args, **kwargs):
-    #     token = None
-    #     if 'x-access-token' in request.headers:
-    #         token = request.headers['x-access-token']
-    #     if not token:
-    #         return res_method(401, "error", "Token is missing")
-    #     try:
-    #         data = jwt.decode(token, KEY, algorithms='HS256')
-    #         query = """
-    #         SELECT email FROM users
-    #         WHERE users.email = '{}'""".format(data['email'])
-
-    #         user = select_data_from_db(query)
-
-    #     except:
-    #         return res_method(401, "error", "Token is expired or invalid")
-
-    #     return f(user, *args, **kwargs)
-    # return decorated
+    
 def verify_tokens():
     token = None
     if 'Authorization' in request.headers:

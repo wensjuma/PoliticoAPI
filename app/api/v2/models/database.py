@@ -163,7 +163,7 @@ def connect_to_db(query=None, DB_URL=None):
     return conn, cursor
 
 
-def query_parties_data(query):
+def query_data_from_db(query):
     """
         Handles INSERT queries
     """

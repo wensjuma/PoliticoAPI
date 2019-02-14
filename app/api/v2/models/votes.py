@@ -5,6 +5,6 @@ class VoteModel():
         self.data = data
         self.propertyName = "votes"
 
-    def createVote(self):
+    def cast_vote(self):
         
         return 

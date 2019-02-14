@@ -88,13 +88,13 @@ def user_login():
 
         token = jwt.encode({
                 "email": req_email,
-                # "user_id": user[0]['user_id'],
+                
                 "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=3000)
             }, os.getenv('JWT_SECRET_KEY', default='SdaHv342nx!jknr837bjwd?c,lsajjjhw673hdsbgeh'))
         return make_response(jsonify({
                             "message": "Login successful",
                             "token": token.decode("UTF-8"),
-                            # "role": user[0]['role']
+                           
                             }), 200)
 
         

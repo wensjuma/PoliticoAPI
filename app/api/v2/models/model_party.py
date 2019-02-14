@@ -25,20 +25,53 @@ class PartiesModel:
             '{}', '{}', '{}'
         )""".format(self.party_name, self.hqAddress, self.logoUrl)
 
-        database.query_parties_data(add_party)
+        database.select_data_from_db(add_party)
+
+    @staticmethod
+    def formatParty(iterable):
+        """
+            This function will help in formatting the party data 
+            in a record format when its called in getting_all_parties
+            or getting a specific party.
+        """
+        data = []
+        for party in iterable:
+            formattedParty= {'id': party[0],
+                               'office_name': party[1],
+                               'type': party[2]}
+            data.append(formattedParty)
+        return data
 
     @staticmethod
     def get_all_parties():
         """
-            Get all parties
+            Fetch all the offices from the database.
         """
-        retrieve_all_parties= """
-        SELECT id, party_name, hqAddress, logoUrl FROM parties
+        get_all_parties = """
+        SELECT * FROM parties
         """
-        return database.query_parties_data(retrieve_all_parties)
-    def update_party(self):
-        query = """UPDATE parties SET party_name = {},
-        hqAddress = {}, logoUrl={} WHERE id = {}""".format(self.party_name,
-                                                        self.hqAddress, self.logoUrl, self.id)
+        return PartiesModel.formatParty(database.select_data_from_db(get_all_parties))
 
-        database.query_parties_data(query)
+    @staticmethod
+    def get_specific_party(office_id):
+        
+        select_single_office = """
+        SELECT * FROM parties WHERE id = '{}'
+        """.format(office_id)
+
+        return PartiesModel.formatParty(database.select_data_from_db(select_single_office))    
+    # @staticmethod
+    # def get_all_parties():
+    #     """
+    #         Get all parties
+    #     """
+    #     retrieve_all_parties= """
+    #     SELECT id, party_name, hqAddress, logoUrl FROM parties
+    #     """
+    #     return database.query_parties_data(retrieve_all_parties)
+    # def update_party(self):
+    #     query = """UPDATE parties SET party_name = {},
+    #     hqAddress = {}, logoUrl={} WHERE id = {}""".format(self.party_name,
+    #                                                     self.hqAddress, self.logoUrl, self.id)
+
+    #     database.query_parties_data(query)
