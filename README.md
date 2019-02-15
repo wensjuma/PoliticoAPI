@@ -36,7 +36,7 @@ $ export FLASK_ENV=development
 
    `flask run`
 
-**Endpoints**
+**Endpoints for v1**
 
 | Method  | Endpoint   | Description  |   
 |---|---|---|
@@ -46,7 +46,21 @@ $ export FLASK_ENV=development
 | GET  | /api/v1/party/id  | Retrieve a specific party  |   
 | POST  | /api/v1/party  | View all parties created by |  
 |  PUT |  /api/v1/party/id |Update a specific party   |  
-| DELETE  | /api/v1/party/id  | Delete specific party  |   
+| DELETE  | /api/v1/party/id  | Delete specific party  | 
+
+**Endpoints for v2(with db)**
+
+| Method  | Endpoint   | Description  |   
+|---|---|---|
+| POST | /api/v2/auth/signup  |  route users to add  |  
+| POST  |  /api/v2/auth/login | Login all users to the system | 
+| POST  |  /api/v2/office | Admin add a new office  |   
+| GET  |  /api/v2/office/id | Retrieve a specific office | 
+| GET  | /api/v2/party/id  | Retrieve a specific party by all users  |
+| GET | /api/v2/offices  |  View All offices created by the Admin by all users  |  
+| POST  |  /api/v2/party | Admin add a new office  |   
+| GET  | /api/v2/party/id  | Retrieve a specific party  |
+| PUT |  /api/v2/party/id |Update a specific party   |  
 
 
 **Installing the application**
