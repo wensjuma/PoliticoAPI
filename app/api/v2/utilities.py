@@ -1,8 +1,9 @@
 import os
 import re
-from flask import abort, request
+from flask import abort, request, make_response, jsonify
 from functools import wraps
 from app.api.utils import res_method
+from app.api.v2.models import database
 from app.api.v2.models.database import select_data_from_db
 from flask_jwt import jwt
 from flask_jwt import JWT
@@ -60,26 +61,27 @@ def check_matching_items_in_db_table(params, table_name):
 
 def token_required(f):
     """
-        This higher order function checks for token in the request
-        Headers
+        Checks for token in the request header
     """
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = None
-        if 'x-access-token' in request.headers:
-            token = request.headers['x-access-token']
-        if not token:
-            return res_method(401, "error", "Token is missing")
-        try:
-            data = jwt.decode(token, KEY, algorithms='HS256')
-            query = """
-            SELECT email FROM users
-            WHERE users.email = '{}'""".format(data['email'])
+    
+def verify_tokens():
+    token = None
+    if 'Authorization' in request.headers:
+        token = request.headers['Authorization']
+    if not token:
+        abort(make_response(jsonify({
+                                "Message": "You need to login"}), 401))
 
-            user = select_data_from_db(query)
+    query = """SELECT token FROM auth WHERE  token = '{}'""".format(token)
+    blacklisted = database.select_data_from_db(query)
+    if blacklisted:
+        abort(make_response(jsonify({
+                        "Message": "Kindly login again"}), 401))
+    try:
+        data = jwt.decode(token, os.getenv('JWT_SECRET_KEY', default='SdaHv342nx!jknr837bjwd?c,lsajjjhw673hdsbgeh'))
+        return data["email"], data["user_id"]
 
-        except:
-            return res_method(401, "error", "Token is expired or invalid")
-
-        return f(user, *args, **kwargs)
-    return decorated
+    except:
+        abort(make_response(jsonify({
+            "Message": "The token is either expired or wrong"
+        }), 403))   

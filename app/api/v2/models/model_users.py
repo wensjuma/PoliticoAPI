@@ -9,8 +9,9 @@ class UserModel:
     The v2 user model.
     """
 
+
     def __init__(self, username, email, password,
-                 firstname, lastname, phone, passportUrl, isPolitician, othername):
+                 firstname, lastname, phone, passportUrl, isPolitician, othername, isAdmin, token=None):
         """
             Constructor of the user class
             New user objects are created with this method
@@ -24,6 +25,8 @@ class UserModel:
         self.passportUrl = passportUrl
         self.isPolitician = isPolitician
         self.othername = othername
+        self.isAdmin= isAdmin
+        self.token= token
 
     def save_user(self):
         """
@@ -54,3 +57,7 @@ class UserModel:
     @staticmethod
     def check_if_password_n_hash_match(password_hash, password):
         return check_password_hash(password_hash, str(password))
+    # def logout(self):
+    #         query = """
+    #     INSERT INTO blacklist (token) VALUES ('{}')
+    #     """.format(self.token)

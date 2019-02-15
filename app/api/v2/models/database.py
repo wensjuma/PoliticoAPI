@@ -59,8 +59,52 @@ def set_up_tables():
         type VARCHAR(32) NOT NULL
         
     ) """
+    candidates_tbl_query = """
+                CREATE TABLE candidates(
+                  id SERIAL PRIMARY KEY,
+                    office_id INTEGER,
+                    party_id INTEGER,
+                    candidate_id INTEGER,
+                    FOREIGN KEY(office_id) REFERENCES office(id),
+                    FOREIGN KEY(party_id) REFERENCES parties(id),
+                    FOREIGN KEY(candidate_id) REFERENCES users(id)
+                );
+            """
+            # create petitions sql query definition
+    petitions_table_query = """
+                CREATE TABLE petitions(
+                    id SERIAL PRIMARY KEY,
+                    created_on TIMESTAMP NOT NULL DEFAULT now(),
+                    created_by INTEGER,
+                    office_id INTEGER,
+                    petition_description TEXT NOT NULL,
+                    FOREIGN KEY(created_by) REFERENCES users(id),
+                    FOREIGN KEY(office_id) REFERENCES office(id)
+                );
+            """
+
+            # create votes sql query definition
+    votes_table_query = """
+                CREATE TABLE votes(
+                    id SERIAL PRIMARY KEY,
+                    created_on TIMESTAMP NOT NULL DEFAULT now(),
+                    created_by INTEGER,
+                    office_id INTEGER,
+                    candidate_id INTEGER,
+                    FOREIGN KEY(created_by) REFERENCES users(id),
+                    FOREIGN KEY(office_id) REFERENCES office(id),
+                    FOREIGN KEY(candidate_id) REFERENCES users(id)
+                );
+            """
+    tockens_lock_query="""
+
+    CREATE TABLE IF NOT EXISTS auth (
+        token VARCHAR (240) NOT NULL
+    );
+    """
     return [users_table_query,parties_table_query,
-    offices_table_query ]
+    offices_table_query, candidates_tbl_query,
+    votes_table_query, petitions_table_query, tockens_lock_query ]
 
 
 def drop_table_if_exists():
@@ -74,9 +118,20 @@ def drop_table_if_exists():
     DROP TABLE IF EXISTS parties CASCADE """
 
     drop_offices_table = """ 
-    DROP TABLE IF EXISTS offices CASCADE """
+    DROP TABLE IF EXISTS office CASCADE """
 
-    return [drop_users_table, drop_offices_table, drop_parties_table]
+    drop_petition_table = """ 
+    DROP TABLE IF EXISTS office CASCADE """
+
+    drop_votes_table = """ 
+    DROP TABLE IF EXISTS office CASCADE """
+
+    drop_candidates_table = """ 
+    DROP TABLE IF EXISTS office CASCADE """
+
+    return [drop_users_table, drop_offices_table, 
+    drop_parties_table, drop_candidates_table, 
+    drop_petition_table, drop_votes_table]
 
 
 def connect_to_db(query=None, DB_URL=None):
@@ -108,7 +163,7 @@ def connect_to_db(query=None, DB_URL=None):
     return conn, cursor
 
 
-def query_parties_data(query):
+def query_data_from_db(query):
     """
         Handles INSERT queries
     """

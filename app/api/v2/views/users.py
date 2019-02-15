@@ -29,6 +29,7 @@ def signup():
         password = data["password"]
         retypedpassword = data["retypedpassword"]
         isPolitician = data.get("isPolitician", False)
+        isAdmin=data.get("isAdmin", False)
 
     except:
        return abort(utils.res_method(400, "error", 'wrong json formated keys'))
@@ -42,7 +43,7 @@ def signup():
     utilities.check_matching_items_in_db_table({"email": email}, "users")
 
     newuser = UserModel(username, email, password, firstname,
-                        lastname, phone, passportUrl, isPolitician, othername)
+                        lastname, phone, passportUrl, isPolitician, othername, isAdmin)
     newuser.save_user()
 
     return utils.res_method(201, "data", [{
@@ -87,13 +88,13 @@ def user_login():
 
         token = jwt.encode({
                 "email": req_email,
-                # "user_id": user[0]['user_id'],
+                
                 "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=3000)
             }, os.getenv('JWT_SECRET_KEY', default='SdaHv342nx!jknr837bjwd?c,lsajjjhw673hdsbgeh'))
         return make_response(jsonify({
                             "message": "Login successful",
                             "token": token.decode("UTF-8"),
-                            # "role": user[0]['role']
+                           
                             }), 200)
 
         
@@ -124,3 +125,15 @@ def reset_password():
         }])
     except psycopg2.DatabaseError as _error:
         abort(utils.res_method(500, "error", "Server error"))
+
+
+# def logout(self):
+#         """POST /auth/logout"""
+        
+#         token = request.headers['Authorization']
+#         user = users.UserModel(token=token)
+#         user.logout()
+
+#         return make_response(jsonify({
+#             'message': 'User Logged out successfully'
+#         }))

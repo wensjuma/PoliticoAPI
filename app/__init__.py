@@ -19,6 +19,8 @@ def create_app(app_config):
 
     from app.api.v2.views.users import user_blueprints
     app.register_blueprint(user_blueprints)
-    
-    
+
+    from app.api.v2.views.offices import office_blueprint
+    app.register_blueprint(office_blueprint)
+       
     return app
