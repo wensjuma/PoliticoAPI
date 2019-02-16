@@ -6,7 +6,7 @@ from app.api.utils import res_method
 from app.api.v2.models import database
 from app.api.v2.models.database import select_data_from_db
 from flask_jwt import jwt
-from flask_jwt import JWT
+
 
 KEY = os.getenv('SECRET_KEY')
 

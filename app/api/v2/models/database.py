@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash
 from config import app_config
 
 
-db_url= "dbname='politico' host='127.0.0.1' port='5432' user='postgres' password='root'",
+#db_url= "dbname='politico' host='127.0.0.1' port='5432' user='postgres' password='root'",
 def init_db(DB_URL=None):
     
     try:
@@ -86,14 +86,12 @@ def set_up_tables():
             # create votes sql query definition
     votes_table_query = """
                 CREATE TABLE votes(
-                    id SERIAL PRIMARY KEY,
+                    PRIMARY KEY (office, created_by)
                     created_on TIMESTAMP NOT NULL DEFAULT now(),
-                    created_by INTEGER,
-                    office_id INTEGER,
-                    candidate_id INTEGER,
-                    FOREIGN KEY(created_by) REFERENCES users(id),
-                    FOREIGN KEY(office_id) REFERENCES office(id),
-                    FOREIGN KEY(candidate_id) REFERENCES users(id)
+                    created_by INTEGER REFERENCES users(id),      
+                    candidate INTEGER REFERENCES candidates(id),
+                    office INTEGER REFERENCES office(id)
+                    
                 );
             """
     tockens_lock_query="""
