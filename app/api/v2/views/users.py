@@ -29,7 +29,7 @@ def signup():
         password = data["password"]
         retypedpassword = data["retypedpassword"]
         isPolitician = data.get("isPolitician", False)
-        isAdmin=data.get("isAdmin", False)
+        
 
     except:
        return abort(utils.res_method(400, "error", 'wrong json formated keys'))
@@ -43,7 +43,7 @@ def signup():
     utilities.check_matching_items_in_db_table({"email": email}, "users")
 
     newuser = UserModel(username, email, password, firstname,
-                        lastname, phone, passportUrl, isPolitician, othername, isAdmin)
+                        lastname, phone, passportUrl, isPolitician, othername)
     newuser.save_user()
 
     return utils.res_method(201, "data", [{

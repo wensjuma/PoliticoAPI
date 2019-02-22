@@ -31,6 +31,7 @@ class Production(Config):
     Set Debug to True
     """
     DEBUG = True
+    DATABASE_URL="dbname='postgres' host='127.0.0.1' port='5432' user='postgres' password='root'"
 class Staging(Config):
     """
     Our testing configuration class

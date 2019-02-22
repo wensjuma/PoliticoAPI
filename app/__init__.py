@@ -22,5 +22,9 @@ def create_app(app_config):
 
     from app.api.v2.views.offices import office_blueprint
     app.register_blueprint(office_blueprint)
+    from app.api.v2.views.votes import votes_bp
+    app.register_blueprint(votes_bp)
+
+
        
     return app
