@@ -15,6 +15,30 @@ consists of utilities required by
 different files in v2 of this app
 """
 
+def validate_ints(data):
+    """
+    Method to validate data of type integer
+    :params: data
+    :response: True, False
+    """
+    if not isinstance(data, int):
+        return False
+    return True
+
+def validate_string(data):
+    """
+    Method to validate data of type string
+    :params: user input
+    :response: True, False 
+    """
+    if not isinstance(data, str):
+        return False
+    return True
+
+def check_field_is_not_empty(input_data):
+
+    if input_data == "":
+        return False
 
 def PasswordsMatch(first_pass, sec_pass):
     """
